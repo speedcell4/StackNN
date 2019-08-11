@@ -1,5 +1,4 @@
 class ControlInstructions:
-
     """Stores the instruction values produced by a control layer.
 
     TODO: Perhaps stack.forward should be able to take this object as an argument.

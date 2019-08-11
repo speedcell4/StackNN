@@ -54,7 +54,7 @@ class BufferedModel(Model):
         self._e_in = None
 
         self._controller = controller_type(input_size, read_size, output_size,
-                                     n_args=4, discourage_pop=True, **kwargs)
+                                           n_args=4, discourage_pop=True, **kwargs)
         self._buffer_in = None
         self._buffer_out = None
 
@@ -153,13 +153,13 @@ class BufferedModel(Model):
         v_labels = ["v_" + str(i) for i in xrange(self._read_size)]
         labels = x_labels + y_labels + i_labels + v_labels
 
-        import matplotlib.pyplot as plt
-        plt.imshow(self._controller.log_data, cmap="hot", interpolation="nearest")
-        plt.title("Trace")
-        plt.yticks(range(len(labels)), labels)
-        plt.xlabel("Time")
-        plt.ylabel("Value")
-        plt.show()
+        # import matplotlib.pyplot as plt
+        # plt.imshow(self._controller.log_data, cmap="hot", interpolation="nearest")
+        # plt.title("Trace")
+        # plt.yticks(range(len(labels)), labels)
+        # plt.xlabel("Time")
+        # plt.ylabel("Value")
+        # plt.show()
 
     def trace_step(self, trace_x, num_steps, step=True):
         """

@@ -50,9 +50,9 @@ class RNNSimpleStructController(SimpleStructController):
             the pop strength
         """
         super(RNNSimpleStructController, self).__init__(input_size,
-                                                     read_size,
-                                                     output_size,
-                                                     n_args=n_args)
+                                                        read_size,
+                                                        output_size,
+                                                        n_args=n_args)
 
         for param_name, arg_value in kwargs.iteritems():
             unused_init_param(param_name, arg_value, self)
@@ -171,9 +171,9 @@ class LSTMSimpleStructController(SimpleStructController):
             the pop strength
         """
         super(LSTMSimpleStructController, self).__init__(input_size,
-                                                      read_size,
-                                                      output_size,
-                                                      n_args=n_args)
+                                                         read_size,
+                                                         output_size,
+                                                         n_args=n_args)
 
         for param_name, arg_value in kwargs.iteritems():
             unused_init_param(param_name, arg_value, self)
@@ -292,9 +292,9 @@ class GRUSimpleStructController(SimpleStructController):
             the pop strength
         """
         super(GRUSimpleStructController, self).__init__(input_size,
-                                                     read_size,
-                                                     output_size,
-                                                     n_args=n_args)
+                                                        read_size,
+                                                        output_size,
+                                                        n_args=n_args)
 
         for param_name, arg_value in kwargs.iteritems():
             unused_init_param(param_name, arg_value, self)

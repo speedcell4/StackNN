@@ -8,7 +8,6 @@ from .control_instructions import ControlInstructions
 
 
 class ControlLayer(torch.nn.Module):
-
     """Layer to convert a vector to stack instructions."""
 
     def __init__(self, input_size, stack_size, vision, device=None):

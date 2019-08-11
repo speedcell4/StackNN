@@ -44,7 +44,7 @@ class VanillaModel(Model):
         super(VanillaModel, self).__init__(read_size, struct_type)
         self._read = None
         self._controller = controller_type(input_size, read_size, output_size,
-                                     **kwargs)
+                                           **kwargs)
         self._input_size = input_size
         self._output_size = output_size
         self._read_size = read_size
@@ -174,13 +174,13 @@ class VanillaModel(Model):
         v_labels = ["v_" + str(i) for i in xrange(self._read_size)]
         labels = x_labels + y_labels + i_labels + v_labels
 
-        import matplotlib.pyplot as plt
-        plt.imshow(self._controller.log_data, cmap="hot", interpolation="nearest")
-        plt.title("Trace")
-        plt.yticks(range(len(labels)), labels)
-        plt.xlabel("Time")
-        plt.ylabel("Value")
-        plt.show()
+        # import matplotlib.pyplot as plt
+        # plt.imshow(self._controller.log_data, cmap="hot", interpolation="nearest")
+        # plt.title("Trace")
+        # plt.yticks(range(len(labels)), labels)
+        # plt.xlabel("Time")
+        # plt.ylabel("Value")
+        # plt.show()
 
     def trace_step(self, trace_x, num_steps=None, step=True):
         """

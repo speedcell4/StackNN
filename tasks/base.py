@@ -19,7 +19,6 @@ from structs.simple import Stack
 
 
 class Task(object):
-
     __metaclass__ = ABCMeta
 
     """
@@ -28,7 +27,6 @@ class Task(object):
     """
 
     # TODO(#18): Remove max_x_length/max_y_length and replace with max_length.
-
 
     class Params(object):
 
@@ -88,7 +86,6 @@ class Task(object):
             self.load_path = kwargs.get("load_path", None)
             self.save_path = kwargs.get("save_path", None)
             self.test_override = kwargs.get("test_override", dict())
-
 
         def __iter__(self):
             return ((attr, getattr(self, attr)) for attr in dir(self)
@@ -732,7 +729,6 @@ class Task(object):
 
 
 class FormalTask(Task):
-
     """A task whose data is generated from a formal language."""
 
     class Params(Task.Params):

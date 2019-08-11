@@ -6,7 +6,9 @@ def overrides(interface_class):
         2. Make it clear where an abstract method that is being implemented was
            originally inherited from.
     """
+
     def overrider(method):
         assert method.__name__ in dir(interface_class)
         return method
+
     return overrider

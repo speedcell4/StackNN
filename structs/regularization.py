@@ -39,7 +39,7 @@ class InterfaceRegTracker(object):
     @property
     def reg_weight(self):
         return self._reg_weight
-    
+
     @property
     def loss(self):
         return self._reg_weight * self._loss / self._count

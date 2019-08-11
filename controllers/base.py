@@ -120,7 +120,7 @@ class SimpleStructController(Controller):
             the pop strength
         """
         super(SimpleStructController, self).__init__(input_size, read_size,
-                                                  output_size)
+                                                     output_size)
 
         self._n_args = n_args
 

@@ -16,13 +16,11 @@ from structs import Stack
 
 
 class EvaluationTask(FormalTask):
-
     """
     Abstract class for experiments where the controller is incrementally
     fed a sequence and at every iteration has to evaluate a given
     function over all the sequence elements it has seen by that point.
     """
-
 
     class Params(FormalTask.Params):
 
@@ -32,7 +30,6 @@ class EvaluationTask(FormalTask):
             self.null = u"2"
             self.max_x_length = self.max_length
             self.max_y_length = self.max_length
-
 
     @property
     def input_size(self):
@@ -204,7 +201,6 @@ class XORTask(EvaluationTask):
         1 1 0 0 1 0 0.
     """
 
-
     class Params(EvaluationTask.Params):
 
         def __init__(self, **kwargs):
@@ -214,7 +210,6 @@ class XORTask(EvaluationTask):
             super(XORTask.Params, self).__init__(max_length=self.str_length,
                                                  time_function=time_function,
                                                  **kwargs)
-
 
     """ Model Training """
 

@@ -26,7 +26,7 @@ task = DelayedXORTask(**configs)
 # task.run_experiment()daefy
 
 trace_X, _ = task.get_tensors(1)
-sentence = task.one_hot_to_sentences(trace_X.size(1),trace_X)
+sentence = task.one_hot_to_sentences(trace_X.size(1), trace_X)
 print task.sentences_to_text(*sentence)
 
 if isinstance(task.model, buffered):

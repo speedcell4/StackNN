@@ -7,7 +7,6 @@ from torch.autograd import Variable
 
 
 class testcase(object):
-
     """""
     Decorator marking a function as a test case.
 
@@ -31,6 +30,7 @@ class testcase(object):
 
     def __call__(self, test):
         name = self._rename(test, self.struct_type)
+
         def wrap_test(i, args):
             try:
                 print("-" * 80)
@@ -58,7 +58,9 @@ class testcase(object):
                 print("    PASSED!")
             finally:
                 stdout.close()
+
         test.__name__ = name
+
         def run_wrapped_tests():
             if self._arg_lists:
                 # Multiple argument configs for the same test.
@@ -67,6 +69,7 @@ class testcase(object):
             else:
                 # No argument configs specified.
                 wrap_test(-1, [])
+
         run_wrapped_tests._is_test_case = True
         return run_wrapped_tests
 

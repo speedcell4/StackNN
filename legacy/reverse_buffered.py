@@ -9,13 +9,12 @@ from torch.autograd import Variable
 
 from models import BufferedModel
 
-
 # Language parameters
 MIN_LENGTH = 1
 MEAN_LENGTH = 10
 STD_LENGTH = 2
 MAX_LENGTH = 12
-TIME_FN = lambda n: n # Number of iterations as a function of input size.
+TIME_FN = lambda n: n  # Number of iterations as a function of input size.
 
 # Hyperparameters
 LEARNING_RATE = .01  # .01 is baseline -- .1 doesn't work!
@@ -82,6 +81,7 @@ def get_tensors(B):
             X[i, j, :] = onehot(char)
             Y[i, j + len(x)] = y[j]
     return Variable(X), Variable(Y)
+
 
 train_X, train_Y = get_tensors(800)
 dev_X, dev_Y = get_tensors(100)

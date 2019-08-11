@@ -14,7 +14,6 @@ from tasks.language_modeling import LanguageModelingTask
 
 
 class OrderedCountingTask(LanguageModelingTask):
-
     """
     An OrderedCountingTask models strings with a form like
 
@@ -28,7 +27,6 @@ class OrderedCountingTask(LanguageModelingTask):
     Loss from all indices in the string affects training. However, the
     evaluation accuracy only looks at the end of words.
     """
-
 
     class Params(LanguageModelingTask.Params):
 
@@ -108,7 +106,7 @@ class OrderedCountingTask(LanguageModelingTask):
         valid_n_range = lambda: xrange(self.min_n, self.max_n)
         x_strings = [self._get_x_string(n) for n in valid_n_range()]
         y_strings = [self._get_y_string(x_string) for x_string in x_strings]
-        
+
         x_var = self.sentences_to_one_hot(self.max_length, *x_strings)
         y_var = self.sentences_to_codes(self.max_length, *y_strings)
 

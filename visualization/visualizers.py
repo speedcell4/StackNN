@@ -2,7 +2,7 @@ from __future__ import division
 from __future__ import print_function
 
 from abc import ABCMeta, abstractmethod
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import random
 
 import torch
@@ -34,7 +34,7 @@ class LSTMVisualizer(Visualizer):
         num_steps = len(input_seq)
         input_var = self._task.sentences_to_one_hot(num_steps, input_seq)
         model = self._task.model
-        
+
         model.eval()
         model.init_model(1, input_var)
 
@@ -54,6 +54,7 @@ class LSTMVisualizer(Visualizer):
         plt.ylabel("Cell State")
         plt.xlabel("Index")
         plt.show()
+
 
 class StackVisualizer(Visualizer):
     """ Visualizes the values pushed and popped from the stack. """

@@ -18,6 +18,7 @@ e2e_test_configs = [
     configs.testing_reverse_deletion_config,
 ]
 
+
 @testcase(run.main, [[config] for config in e2e_test_configs])
 def test_main(config):
     """ Run several test tasks end-to-end. """

@@ -14,14 +14,12 @@ from stacknn_utils import overrides
 
 
 class NaturalTask(Task):
-
     """A task for loading and training on raw data; i.e. not generated data.
 
     It is assumed that the data is in CSV format. It is read into a pandas
     DataFrame and then used to train a model.
     """
 
-    
     class Params(Task.Params):
 
         """New parameters for a task that loads a natural language dataset.
@@ -50,7 +48,6 @@ class NaturalTask(Task):
             if self.binary_label is not None:
                 # If we are predicting a scalar, use sigmoid cross entropy for logistic regression.
                 self.criterion = nn.BCEWithLogitsLoss(reduction="sum")
-
 
     def __init__(self, params):
         self.word_to_i = None
@@ -116,7 +113,7 @@ class NaturalTask(Task):
 
     def _get_x_tensor(self, sents):
         x_tensor = torch.zeros(len(sents), self.max_x_length)
-        x_tensor = x_tensor.long() # Type must be long to work properly with embeddings.
+        x_tensor = x_tensor.long()  # Type must be long to work properly with embeddings.
         for i, sent in enumerate(sents):
             for j, word in enumerate(sent):
                 x_tensor[i, j] = self.word_to_i[word]
@@ -124,7 +121,7 @@ class NaturalTask(Task):
 
     def _get_y_tensor(self, sents, labels):
         y_tensor = torch.zeros(len(sents), self.max_x_length)
-        y_tensor = y_tensor.long() # Make type long for evaluation logic.
+        y_tensor = y_tensor.long()  # Make type long for evaluation logic.
         for i, label in enumerate(labels):
             predict_index = len(sents[i]) - 1
             y_tensor[i, predict_index] = self.label_to_i[label]
@@ -142,13 +139,13 @@ class NaturalTask(Task):
         if self.params.binary_label is not None:
             # We are out here in sigmoid land.
             valid_a = torch.squeeze(valid_a, 1).float()
-            valid_y_ = (valid_a > 0.).float() # Hard sigmoid.
+            valid_y_ = (valid_a > 0.).float()  # Hard sigmoid.
             main_i = self.label_to_i[self.params.binary_label]
             valid_y = (valid_y == main_i).float()
         else:
             # Do normal softmax stuff on the output distribution.
-            _, valid_y_ = torch.max(valid_a, 1) # Hard softmax.
-        
+            _, valid_y_ = torch.max(valid_a, 1)  # Hard softmax.
+
         total = len(valid_a)
         correct = len(torch.nonzero((valid_y_ == valid_y).data))
         # TODO: Could "reduce" in the loss criterion matter for training?

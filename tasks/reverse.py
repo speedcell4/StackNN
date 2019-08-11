@@ -14,9 +14,7 @@ from structs import Stack
 
 
 class ReverseTask(FormalTask):
-
     """String reversal task."""
-
 
     class Params(FormalTask.Params):
 
@@ -32,7 +30,6 @@ class ReverseTask(FormalTask):
             self.null = unicode(self.num_symbols)
             self.max_x_length = self.max_length * 2
             self.max_y_length = self.max_length * 8
-
 
     @property
     def input_size(self):
@@ -155,7 +152,9 @@ class ReverseTask(FormalTask):
     @property
     def generic_example(self):
         """The string for visualizations."""
-        return [u'1', u'1', u'1', u'2', u'1', u'1', u'2', u'1', u'1', u'2', u'1', u'2', u'2', u'1', u'2', u'2', u'2', u'2', u'2', u'1', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0']
+        return [u'1', u'1', u'1', u'2', u'1', u'1', u'2', u'1', u'1', u'2', u'1', u'2', u'2', u'1', u'2', u'2', u'2',
+                u'2', u'2', u'1', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0', u'0',
+                u'0', u'0', u'0', u'0', u'0', u'0']
 
 
 class CopyTask(ReverseTask):

@@ -11,11 +11,13 @@ import torch.nn as nn
 from base import SimpleStructController
 from stacknn_utils.errors import unused_init_param
 
+
 class DeepSimpleStructController(SimpleStructController):
     """
     A fully connected multilayer network producing instructions compatible
     with SimpleStructs (see structs.simple.SimpleStruct).
     """
+
     def __init__(self, input_size, read_size, output_size,
                  n_args=2, discourage_pop=True, n_hidden_layers=2,
                  non_linearity=nn.ReLU, **kwargs):
@@ -49,9 +51,9 @@ class DeepSimpleStructController(SimpleStructController):
         :param non_linearity: Non-linearity to apply to hidden layers
         """
         super(DeepSimpleStructController, self).__init__(input_size,
-                                                        read_size,
-                                                        output_size,
-                                                        n_args=n_args)
+                                                         read_size,
+                                                         output_size,
+                                                         n_args=n_args)
 
         for param_name, arg_value in kwargs.iteritems():
             unused_init_param(param_name, arg_value, self)
@@ -59,13 +61,13 @@ class DeepSimpleStructController(SimpleStructController):
         # Create a Multilayer NN
         nn_input_size = self._input_size + self._read_size
         nn_output_size = self._n_args + self._read_size + self._output_size
-        nn_hidden_size = int(ceil((nn_input_size+nn_output_size)/2.0))
-        nn_sizes_list = [nn_input_size] + [nn_hidden_size]*n_hidden_layers
+        nn_hidden_size = int(ceil((nn_input_size + nn_output_size) / 2.0))
+        nn_sizes_list = [nn_input_size] + [nn_hidden_size] * n_hidden_layers
 
         self._network = nn.Sequential()
         for i in range(n_hidden_layers):
-            self._network.add_module('lin'+str(i), nn.Linear(nn_sizes_list[i], nn_sizes_list[i+1]))
-            self._network.add_module('relu'+str(i), non_linearity())
+            self._network.add_module('lin' + str(i), nn.Linear(nn_sizes_list[i], nn_sizes_list[i + 1]))
+            self._network.add_module('relu' + str(i), non_linearity())
         self._network.add_module('out', nn.Linear(nn_sizes_list[-1], nn_output_size))
 
         # Initialize Module weights
@@ -86,7 +88,7 @@ class DeepSimpleStructController(SimpleStructController):
             DeepSimpleStructController.init_normal(module.weight)
             module.bias.data.fill_(0)
             if self.discourage_pop:
-                module.bias.data[0] = -1. # Discourage popping
+                module.bias.data[0] = -1.  # Discourage popping
                 if self._n_args >= 4:
                     module.bias.data[2] = 1.  # Encourage reading
                     module.bias.data[3] = 1.  # Encourage writing
@@ -160,9 +162,9 @@ class LinearSimpleStructController(SimpleStructController):
             to discourage popping
         """
         super(LinearSimpleStructController, self).__init__(input_size,
-                                                        read_size,
-                                                        output_size,
-                                                        n_args=n_args)
+                                                           read_size,
+                                                           output_size,
+                                                           n_args=n_args)
 
         for param_name, arg_value in kwargs.iteritems():
             unused_init_param(param_name, arg_value, self)
